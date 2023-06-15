@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temp convertor</title>
+    <style>
+        body {
+
+            position: absolute;
+            text-align: center;
+            background-image: url('https://cdn.wallpapersafari.com/18/33/WjoFwi.jpg');
+            background-position: cover;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .first {
+           
+            justify-content: center;
+            position: relative;
+            background-color:#9DB2BF;
+            border: 5px solid #DDE6ED;
+            width: 60%;
+            height: 100vh;
+            text-align: left;
+            margin-top: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin-left: 80%;
+            margin-bottom: 10px;
+            border-radius: 30px;
+        }
+
+
+        .heading {
+            text-align: center;
+            color: #27374D;
+            font-size: 35px;
+            padding-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container label {
+            width: 350px;
+            display: inline-block;
+            /* text-align: center; */
+            margin-left: 10px;
+            font-size: 25px;
+            font-family: serif;
+            font-weight: bold;
+            padding: 10px;
+            color:white;
+        }
+
+        input[type=text],
+        select {
+            width: 90%;
+            position: relative;
+            /* padding: 5px 5px; */
+            height: 35px;
+            border-radius: 10px;
+            margin-left: 15px;
+            border-color: pink;
+            background-color: #D2E9E9;
+            
+
+        }
+
+        input:hover {
+            border-color: green;
+            background-color: white;
+            color: black;
+
+        }
+
+        .result {
+            cursor: not-allowed;
+        }
+
+
+
+        #temp1,
+        #temp2 {
+
+            background-color: #D2E9E9;
+        }
+
+        .btn {
+            margin-left: 15px;
+            width: 50%;
+            height: 40px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: #D2E9E9;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        :placeholder-shown{
+            font-size:14px;
+        }
+
+        .btn:hover {
+            background-color: #526D82;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="first">
+        <h1 class="heading">Temperature Convertor</h1>
+        <form class="container">
+            <div>
+                <label for="name">Enter the value to convert:</label>
+                <input type="text" id="deg" placeholder="Enter the value" required autocomplete="off">
+            </div>
+            <div>
+                <label for="c1">From:</label>
+                <select id="temp1">
+                    <option></option>
+                    <option value="cel">Celsius</option>
+                    <option value="fh">Fahrenheit</option>
+                    <option value="kel">Kelvin</option>
+
+                </select>
+            </div>
+            <div>
+                <label for="c2">To:</label>
+                <select id="temp2">
+                    <option></option>
+                    <option value="cel">Celsius</option>
+                    <option value="fh">Fahrenheit</option>
+                    <option value="kel">Kelvin</option>
+
+                </select>
+            </div>
+            <div>
+                <label for="result" ><b>Your Result: </b></label>
+                <input class="result" type="text" name="result" id="result" readonly>
+            </div>
+
+        </form>
+        <div>
+            <center> <button class="btn" id="submit" onClick="convert()">Convert</button></center>
+        </div>
+    </div>
+    <script>
+        function convert() {
+            let deg = document.getElementById("deg");
+            let val1 = document.getElementById("temp1");
+            let val2 = document.getElementById("temp2");
+            let res = document.getElementById("result");
+            let sub = document.getElementById("submit");
+
+            if (val1.value === "cel" && val2.value === "fh")
+                res.value = parseFloat((deg.value) * 9 / 5) + 32;
+            else if (val1.value === "cel" && val2.value === "kel")
+                res.value = parseFloat(deg.value) + 273.15;
+            else if (val1.value === "cel" && val2.value === "cel")
+                res.value = deg.value;
+            if (val1.value === "fh" && val2.value === "cel")
+                res.value = parseInt((deg.value - 32) * 5) / 9;
+            else if (val1.value === "fh" && val2.value === "kel")
+                res.value = parseInt(deg.value - 32) * 5 / 9 + 273.15;
+            else if (val1.value === "fh" && val2.value === "fh")
+                res.value = deg.value;
+            if (val1.value === "kel" && val2.value === "cel")
+                res.value = parseInt(deg.value) - 273.15;
+            else if (val1.value === "kel" && val2.value === "fh")
+                res.value = parseFloat((deg.value - 273.15) * 9 / 5) + 32;
+            else if (val1.value === "kel" && val2.value === "kel")
+                res.value = deg.value;
+        }
+    </script>
+</body>
+
+</html>
